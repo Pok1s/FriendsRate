@@ -1,0 +1,73 @@
+import UIKit
+
+class MainViewController: UIViewController {
+    
+    // add views and UI elements here
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // set up navigation bar
+        self.navigationItem.title = "Online Platform"
+        let profileButton = UIBarButtonItem(image: UIImage(systemName: "person.circle"), style: .plain, target: self, action: #selector(profileButtonTapped))
+        let conversationsButton = UIBarButtonItem(image: UIImage(systemName: "message.circle"), style: .plain, target: self, action: #selector(conversationsButtonTapped))
+        self.navigationItem.leftBarButtonItem = profileButton
+        self.navigationItem.rightBarButtonItem = conversationsButton
+    }
+    
+    @objc func profileButtonTapped() {
+        // handle tapping on profile button
+        let profileVC = ProfileViewController()
+        self.navigationController?.pushViewController(profileVC, animated: true)
+    }
+    
+    @objc func conversationsButtonTapped() {
+        // handle tapping on conversations button
+        let conversationsVC = ConversationsViewController()
+        self.navigationController?.pushViewController(conversationsVC, animated: true)
+    }
+}
+
+class ProfileViewController: UIViewController {
+    
+    // add views and UI elements here
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        let alertController = UIAlertController(title: "Заголовок", message: "Повідомлення", preferredStyle: .alert)
+
+                // Створення дії
+                let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+
+                // Додавання дії в UIAlertController
+                alertController.addAction(action)
+
+                // Відображення UIAlertController
+                present(alertController, animated: true, completion: nil)
+        
+        // set up navigation bar
+        self.navigationItem.title = "Profile"
+    }
+}
+
+class ConversationsViewController: UIViewController {
+    
+    // add views and UI elements here
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        let alertController = UIAlertController(title: "Заголовок", message: "Повідомлення", preferredStyle: .alert)
+
+                // Створення дії
+                let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+
+                // Додавання дії в UIAlertController
+                alertController.addAction(action)
+
+                // Відображення UIAlertController
+                present(alertController, animated: true, completion: nil)
+        
+        // set up navigation bar
+        self.navigationItem.title = "Conversations"
+    }
+}
