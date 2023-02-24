@@ -1,0 +1,32 @@
+import UIKit
+
+class ЛЛViewController: UIViewController {
+
+    let slider = UISlider()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // Встановлюємо рамку UISlider
+        slider.frame = CGRect(x: 50, y: 100, width: 200, height: 30)
+        
+        // Встановлюємо максимальне та мінімальне значення
+        slider.maximumValue = 100
+        slider.minimumValue = 0
+        
+        // Встановлюємо початкове значення
+        slider.value = 50
+        
+        // Додавання функції, яка виконується при зміні значення UISlider
+        slider.addTarget(self, action: #selector(sliderValueChanged(_:)), for: .valueChanged)
+        
+        // Додавання UISlider на екран
+        self.view.addSubview(slider)
+    }
+    
+    // Функція, яка викликається при зміні значення UISlider
+    @objc func sliderValueChanged(_ sender: UISlider) {
+        print(sender.value)
+    }
+}
+
