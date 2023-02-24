@@ -1,0 +1,50 @@
+import UIKit
+
+class MyViewController: UIViewController {
+    
+    // Маркер: властивості ViewController
+    let myLabel = UILabel()
+    let myButton = UIButton()
+    
+    // Маркер: метод viewDidLoad
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // Встановлюємо фоновий колір
+        view.backgroundColor = .white
+        
+        // Встановлюємо текст і розмір мітки
+        myLabel.text = "Привіт, світ!"
+        myLabel.font = UIFont.systemFont(ofSize: 24)
+        
+        // Встановлюємо текст кнопки і колір тла
+        myButton.setTitle("Натисни мене", for: .normal)
+        myButton.backgroundColor = .blue
+        
+        // Додаємо обробник події натискання кнопки
+        myButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
+        
+        // Додаємо мітку та кнопку на екран
+        view.addSubview(myLabel)
+        view.addSubview(myButton)
+        
+        // Встановлюємо обмеження на мітку та кнопку
+        myLabel.translatesAutoresizingMaskIntoConstraints = false
+        myButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        // Встановлюємо констрейнти для мітки та кнопки
+        NSLayoutConstraint.activate([
+            myLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            myLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -50),
+            myButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            myButton.topAnchor.constraint(equalTo: myLabel.bottomAnchor, constant: 50),
+            myButton.widthAnchor.constraint(equalToConstant: 200),
+            myButton.heightAnchor.constraint(equalToConstant: 50)
+        ])
+    }
+    
+    // Маркер: метод buttonPressed
+    @objc func buttonPressed() {
+        myLabel.text = "Натиснуто!"
+    }
+}
