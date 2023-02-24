@@ -1,0 +1,69 @@
+import UIKit
+class MhhViewController: UIViewController {
+    let myLabel = UILabel()
+    let myButton = UIButton()
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .white
+        myLabel.text = "Привіт, світ!"
+        myLabel.font = UIFont.systemFont(ofSize: 24)
+        myButton.setTitle("Натисни мене", for: .normal)
+        myButton.backgroundColor = .blue
+        myButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
+        view.addSubview(myLabel)
+        view.addSubview(myButton)
+        myLabel.translatesAutoresizingMaskIntoConstraints = false
+        myButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            myLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            myLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -50),
+            myButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            myButton.topAnchor.constraint(equalTo: myLabel.bottomAnchor, constant: 50),
+            myButton.widthAnchor.constraint(equalToConstant: 200),
+            myButton.heightAnchor.constraint(equalToConstant: 50)
+        ])
+    }
+    @objc func buttonPressed() {
+        myLabel.text = "Натиснуто!"
+    }
+}
+class MYViewController: UIViewController {
+    let slider = UISlider()
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        slider.frame = CGRect(x: 50, y: 100, width: 200, height: 30)
+        slider.maximumValue = 100
+        slider.minimumValue = 0
+        slider.value = 50
+        slider.addTarget(self, action: #selector(sliderValueChanged(_:)), for: .valueChanged)
+        self.view.addSubview(slider)
+    }
+    @objc func sliderValueChanged(_ sender: UISlider) {
+        print(sender.value)
+    }
+}
+class MYkkViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        let alertController = UIAlertController(title: "Заголовок", message: "Повідомлення", preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(action)
+        present(alertController, animated: true, completion: nil)
+    }
+    @IBAction func selectImage(_ sender: Any){
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = .photoLibrary
+        imagePicker.allowsEditing = false
+        present(imagePicker, animated: true, completion: nil)
+    }
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if info[UIImagePickerController.InfoKey.originalImage] is UIImage {
+            // Обробіть вибране зображення
+        }
+        dismiss(animated: true, completion: nil)
+    }
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+}
