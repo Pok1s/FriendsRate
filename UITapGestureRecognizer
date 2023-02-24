@@ -1,0 +1,32 @@
+import UIKit
+
+class MViewController: UIViewController {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        let alertController = UIAlertController(title: "Заголовок", message: "Повідомлення", preferredStyle: .alert)
+
+                // Створення дії
+                let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+
+                // Додавання дії в UIAlertController
+                alertController.addAction(action)
+
+                // Відображення UIAlertController
+                present(alertController, animated: true, completion: nil)
+        
+        // Створюємо UITapGestureRecognizer з функцією обробки тапів
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
+        
+        // Додавання UITapGestureRecognizer до UIView
+        let myView = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+        myView.addGestureRecognizer(tapGesture)
+        view.addSubview(myView)
+    }
+    
+    @objc func handleTap(_ sender: UITapGestureRecognizer) {
+        // Код для обробки тапу
+        print("Тапнуто на екрані")
+    }
+}
+
